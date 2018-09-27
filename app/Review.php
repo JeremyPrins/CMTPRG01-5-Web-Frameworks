@@ -12,12 +12,15 @@ class Review extends Model
     }
 
     function movie (){
-        return $this->belongsTo(Movie::class);
+        return $this->belongsTo(Movie::class, 'movie_id', 'moviedb_id');
     }
 
     function comments(){
         return $this->hasMany(Comment::class);
     }
+
+
+
 }
 
 

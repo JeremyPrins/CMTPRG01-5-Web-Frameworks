@@ -8,7 +8,7 @@ class Movie extends Model
 {
 
     function reviews(){
-        return $this->belongsToMany(Review::class);
+        return $this->hasMany(Review::class,  'moviedb_id', 'movie_id');
     }
 
     function genres(){
