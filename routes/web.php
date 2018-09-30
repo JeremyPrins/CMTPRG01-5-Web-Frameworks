@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/overview', 'PagesController@overview')->name('overview');
     Route::get('/search', 'PagesController@search')->name('search');
-    Route::get('/reviews', 'ReviewsController@index')->name('reviews');
+    Route::get('/reviews/', 'ReviewsController@index')->name('review');
 
     Route::resource('reviews', 'ReviewsController');
 

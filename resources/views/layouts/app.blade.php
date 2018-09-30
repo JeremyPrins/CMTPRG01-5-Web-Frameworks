@@ -38,10 +38,13 @@
                     @guest
                     @else
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('search') }}">{{ __('Search') }}</a>
+                        </li>
+                                                <li class="nav-item">
                             <a class="nav-link" href="{{ route('overview') }}">{{ __('Overview') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('search') }}">{{ __('Search') }}</a>
+                            <a class="nav-link" href="{{ route('reviews.index') }}">{{ __('Reviews') }}</a>
                         </li>
                     @endguest
 
@@ -57,6 +60,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
+
 
                     @else
                         <li class="nav-item dropdown">
