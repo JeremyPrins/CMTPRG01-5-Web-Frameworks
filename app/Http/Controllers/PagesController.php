@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movie;
+
 
 class PagesController extends Controller
 {
@@ -12,7 +14,11 @@ class PagesController extends Controller
     }
 
     public function overview(){
-        return view('pages.overview');
+
+        $movies =  Movie::orderBy('original_title', 'asc')->get();
+
+        return view('pages.overview')->with('movies', $movies);
+
     }
 
     public function search(){

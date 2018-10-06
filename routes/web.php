@@ -24,6 +24,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search', 'PagesController@search')->name('search');
     Route::get('/reviews/', 'ReviewsController@index')->name('review');
 
+    Route::get('/add_movie', 'AddMovieController@index')->name('add_movie');
+    Route::get('/add_movie/search', 'AddMovieController@search')->name('search');
+    Route::post('/add_movie/search', 'AddMovieController@search')->name('search');
+
     Route::resource('reviews', 'ReviewsController');
+
 
 });

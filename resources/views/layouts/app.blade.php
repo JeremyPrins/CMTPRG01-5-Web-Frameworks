@@ -38,13 +38,14 @@
                     @guest
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('search') }}">{{ __('Search') }}</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="{{ route('overview') }}">{{ __('Overview') }}</a>
+                            <a class="nav-link header-link" href="{{ route('search') }}">{{ __('Search') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('reviews.index') }}">{{ __('Reviews') }}</a>
+                            <a class="nav-link header-link"
+                               href="{{ route('overview') }}">{{ __('Overview Movies') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link header-link" href="{{ route('reviews.index') }}">{{ __('Reviews') }}</a>
                         </li>
                     @endguest
 
@@ -71,6 +72,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                @if (!Auth::guest() && Auth::user()->role === 1)
+                                    <a class="dropdown-item" href="{{ route('add_movie') }}">{{ __('Add Movie') }}</a>
+
+                                @else
+                                @endif
+
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
