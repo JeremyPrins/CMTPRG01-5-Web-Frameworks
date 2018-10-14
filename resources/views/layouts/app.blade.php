@@ -38,7 +38,7 @@
                     @guest
                     @else
                         <li class="nav-item">
-                            <a class="nav-link header-link" href="{{ route('search') }}">{{ __('Search') }}</a>
+                            <a class="nav-link header-link" href="{{ route('searchMovie') }}">{{ __('Search') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link header-link"

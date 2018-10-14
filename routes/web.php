@@ -21,12 +21,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/overview', 'PagesController@overview')->name('overview');
-    Route::get('/search', 'PagesController@search')->name('search');
+    Route::get('/search', 'PagesController@search')->name('searchMovie');
     Route::get('/reviews/', 'ReviewsController@index')->name('review');
 
     Route::get('/add_movie', 'AddMovieController@index')->name('add_movie');
     Route::get('/add_movie/search', 'AddMovieController@search')->name('search');
     Route::post('/add_movie/search', 'AddMovieController@search')->name('search');
+    Route::get('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
+    Route::post('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
 
     Route::resource('reviews', 'ReviewsController');
 

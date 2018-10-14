@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Review;
+use App\Movie;
+use Auth;
 
 class ReviewsController extends Controller
 {
@@ -14,7 +17,7 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        $reviews =  Review::all();
+        $reviews = Review::all();
 
         return view('reviews.index')->with('reviews', $reviews);
     }
@@ -26,29 +29,47 @@ class ReviewsController extends Controller
      */
     public function create()
     {
-        return view('reviews.create');
+
+        $movies = Movie::all();
+        $select = [];
+        foreach ($movies as $movie) {
+            $select[$movie->moviedb_id] = $movie->original_title;
+        }
+        return view('reviews.create', compact('select'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $reviewObject)
     {
-        $this->validate($request, [
-           'title' => 'required',
-           'body => required'
-        ]);
+        $this->validate($reviewObject, [
+            'id' => 'required',
+            'body' => 'required',
+            'rating' => 'required'
 
-        return $request;
+        ]);
+        $review = new Review;
+
+
+        $user = Auth::user();
+        $review->user_id = $user->id;
+        $review->movie_id = $reviewObject['id'];
+        $review->text = $reviewObject['body'];
+        $review->rating = $reviewObject['rating'];
+        $review->save();
+
+        return view('reviews.index');
+//        return $reviewObject;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,7 +81,7 @@ class ReviewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -71,8 +92,8 @@ class ReviewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -83,7 +104,7 @@ class ReviewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

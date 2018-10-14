@@ -2,8 +2,8 @@
 
 @section('content')
     <h1>Reviews Page</h1>
+    <a href="{{ route('reviews.create') }}">{{ __('Write a Review') }}</a>
     <hr>
-
     @if(count($reviews) >= 1 )
         <ul class="list-unstyled">
             @foreach($reviews as $review)

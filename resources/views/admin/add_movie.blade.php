@@ -16,16 +16,30 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Array NR</th>
+            <th scope="col">ID</th>
+            <th scope="col">Array Pos</th>
+            <th scope="col">Add</th>
             <th scope="col">Title</th>
             <th scope="col">Release Year</th>
         </tr>
         </thead>
         <tbody>
         @if($searchResult['results'] != null)
-            @foreach($searchResult['results'] as $item)
+            @foreach($searchResult['results'] as $arrayPos=>$item)
                 <tr>
-                    <td></td>
+                    <td>{{$item['id']}}</td>
+                    <td>{{$arrayPos++}}</td>
+                    <td>
+                        {!! Form::open(['action' => 'AddMovieController@movieToDatabase', 'method' => 'POST']) !!}
+                        <div class="form-group">
+                            {{Form::text('id', $item['id'] ,['class' => 'form-control', 'placeholder' => 'Search movie title...' ])}}
+
+                        </div>
+
+
+                        {{Form::submit('Add movie to Database', ['class' => 'btn btn-primary'])}}
+                        {!! Form::close() !!}
+                    </td>
                     <td>{{$item['title']}}</td>
                     <td>{{ Carbon\Carbon::parse($item['release_date'])->format('Y') }}</td>
                 </tr>
