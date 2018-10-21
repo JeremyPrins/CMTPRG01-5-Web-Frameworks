@@ -75,6 +75,7 @@
 
                                 @if (!Auth::guest() && Auth::user()->role === 1)
                                     <a class="dropdown-item" href="{{ route('add_movie') }}">{{ __('Add Movie') }}</a>
+                                    <a class="dropdown-item" href="{{ route('reviewOverview') }}">{{ __('Reviews Overview') }}</a>
 
                                 @else
                                 @endif

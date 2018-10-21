@@ -22,6 +22,7 @@
                                 <a href="https://www.imdb.com/title/{{$movie->imdb_id}}" target="_blank">IMDb page</a>
                             </div>
                         </li>
+
                     @endforeach
                 </div>
             </ul>

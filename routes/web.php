@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
     Route::post('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
 
+    Route::get('/admin/review_overview', 'AdminController@overview')->name('reviewOverview');
+
+
     Route::resource('reviews', 'ReviewsController');
 
 

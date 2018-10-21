@@ -62,8 +62,8 @@ class ReviewsController extends Controller
         $review->rating = $reviewObject['rating'];
         $review->save();
 
-        return view('reviews.index');
-//        return $reviewObject;
+        $reviews = Review::all();
+        return view('reviews.index')->with('reviews', $reviews);
     }
 
     /**
