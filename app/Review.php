@@ -7,15 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
 
-    function user(){
+
+    function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    function movie (){
-        return $this->belongsTo(Movie::class, 'movie_id', 'moviedb_id');
+    function movie()
+    {
+        return $this->belongsTo(Movie::class);
     }
 
-    function comments(){
+    function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 

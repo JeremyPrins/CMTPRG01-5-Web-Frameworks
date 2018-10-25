@@ -19,21 +19,30 @@ Route::get('/', 'PagesController@index')->name('welcome');
 Route::group(['middleware' => 'auth'], function () {
 
 
+    Route::get('/users/{user}', 'UserController@index')->name('user.index');
+
+
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/overview', 'PagesController@overview')->name('overview');
-    Route::get('/search', 'PagesController@search')->name('searchMovie');
-    Route::get('/reviews/', 'ReviewsController@index')->name('review');
+    Route::get('/overview', 'PagesController@overview')->name('pages.overview');
 
-    Route::get('/add_movie', 'AddMovieController@index')->name('add_movie');
-    Route::get('/add_movie/search', 'AddMovieController@search')->name('search');
-    Route::post('/add_movie/search', 'AddMovieController@search')->name('search');
-    Route::get('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
-    Route::post('/add_movie/result', 'AddMovieController@movieToDatabase')->name('movieToDatabase');
 
-    Route::get('/admin/review_overview', 'AdminController@overview')->name('reviewOverview');
+    Route::get('/search', 'SearchController@index')->name('pages.search');
+    Route::post('/search/result', 'SearchController@selectGenres')->name('pages.search/result');
 
+    Route::get('/reviews', 'ReviewsController@index')->name('review');
 
     Route::resource('reviews', 'ReviewsController');
+
+    Route::resource('movies', 'MoviesController');
+
+
+
+    // Admin Routes
+    Route::get('/admin/review_overview', 'AdminController@overview')->name('reviews.overview');
+    Route::get('/admin/add_movie', 'AdminController@index')->name('admin.add_movie');
+    Route::get('/admin/add_movie/search', 'AdminController@search')->name('admin.search');
+    Route::post('/admin/add_movie/search', 'AdminController@search')->name('admin.search');
+    Route::post('/admin/add_movie', 'AdminController@movieToDatabase')->name('admin.movie_to_database');
 
 
 });

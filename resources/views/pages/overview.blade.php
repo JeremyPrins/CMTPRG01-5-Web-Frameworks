@@ -3,30 +3,33 @@
 @section('content')
     <h1>Movies Overview</h1>
     <hr>
-
-    @if(count($movies) >= 1 )
-
+    @if(($movies))
         <div class="container">
-            <ul class="list-unstyled">
-                <div class="row">
-                    @foreach($movies as $movie)
-                        <li class="media col">
-                            <img class="mr-3" src="http://image.tmdb.org/t/p/w154/{{$movie->poster_path}}"
-                                 alt="{{$movie->original_title}}">
-                            <div class="media-body">
-                                <h4>{{$movie->original_title}}</h4>
-                                <p>({{ Carbon\Carbon::parse($movie->release_date)->format('Y')}}) </p>
+        <div class="row">
+            @foreach($movies as $movie)
+                <div class="col-6 movie-card">
+                    <div class="media">
+                        <img class="mr-3" src="http://image.tmdb.org/t/p/w154/{{$movie->poster_path}}"
+                             alt="{{$movie->original_title}}">
+
+                        <div class="media-body">
+                            <div>
+                                <h3 class="mt-0 mb-1"><a href="{{route('movies.show', ['movie' => $movie->id])}}">{{$movie->original_title}}</a></h3>
+                                <h5>{{ Carbon\Carbon::parse($movie->release_date)->format('Y')}}</h5>
                                 <small>{{$movie->tagline}}</small>
-
-                                <p>{{$movie->overview}}</p>
-                                <a href="https://www.imdb.com/title/{{$movie->imdb_id}}" target="_blank">IMDb page</a>
                             </div>
-                        </li>
-
-                    @endforeach
+                            <div>
+                                <strong>Genre:</strong>
+                                @foreach($movie->genres as $genre)
+                                    <small>{{$genre->name}},</small>
+                                @endforeach
+                                <p>{{  \Illuminate\Support\Str::words($movie->overview, 40, ' ...')}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </ul>
-        </div>
+            @endforeach
+        </div></div>
     @else
         <p>No Reviews found</p>
     @endif

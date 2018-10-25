@@ -9,19 +9,16 @@ use App\Movie;
 class PagesController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         return view('pages.welcome');
     }
 
-    public function overview(){
-
-        $movies =  Movie::orderBy('original_title', 'asc')->get();
-
+    public function overview()
+    {
+        $movies = Movie::orderBy('original_title', 'asc')->get();
         return view('pages.overview')->with('movies', $movies);
 
     }
 
-    public function search(){
-        return view('pages.search');
-    }
 }

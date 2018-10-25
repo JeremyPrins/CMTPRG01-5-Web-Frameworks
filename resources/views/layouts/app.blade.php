@@ -38,11 +38,11 @@
                     @guest
                     @else
                         <li class="nav-item">
-                            <a class="nav-link header-link" href="{{ route('searchMovie') }}">{{ __('Search') }}</a>
+                            <a class="nav-link header-link" href="{{ route('pages.search') }}">{{ __('Search') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link header-link"
-                               href="{{ route('overview') }}">{{ __('Overview Movies') }}</a>
+                               href="{{ route('pages.overview') }}">{{ __('Overview Movies') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link header-link" href="{{ route('reviews.index') }}">{{ __('Reviews') }}</a>
@@ -56,10 +56,10 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
 
 
@@ -67,18 +67,17 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} - {{ Auth::user()->email }}<span class="caret"></span>
-
+                                {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 @if (!Auth::guest() && Auth::user()->role === 1)
-                                    <a class="dropdown-item" href="{{ route('add_movie') }}">{{ __('Add Movie') }}</a>
-                                    <a class="dropdown-item" href="{{ route('reviewOverview') }}">{{ __('Reviews Overview') }}</a>
+                                    <a class="dropdown-item" href="{{ route('admin.add_movie') }}">Add Movie</a>
+                                    <a class="dropdown-item" href="{{ route('reviews.overview') }}">Reviews Overview</a>
 
-                                @else
                                 @endif
+                                <a class="dropdown-item" href="{{route('user.index', [Auth::user()]) }}">My Profile</a>
 
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,9 +100,9 @@
 
     <div class="container">
         <main class="py-4">
-
-            @yield('content')
-
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 

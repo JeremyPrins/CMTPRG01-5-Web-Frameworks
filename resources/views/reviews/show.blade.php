@@ -10,4 +10,7 @@
     <p>Rating: {{$review->rating}}/10</p>
     <hr>
 
+
+
+
 @endsection
