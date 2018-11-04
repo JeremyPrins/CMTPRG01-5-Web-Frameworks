@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                {{Form::submit('Search', ['class' => 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}
         </div>
@@ -34,7 +34,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">Poster</th>
+                <th scope="col">Title</th>
                 <th scope="col">Release Year</th>
                 <th scope="col">Add</th>
             </tr>

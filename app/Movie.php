@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
 
-    public $appends = ['avg_rating'];
 
 
     function reviews(){
@@ -18,10 +17,5 @@ class Movie extends Model
         return $this->belongsToMany(Genre::class);
 
     }
-
-    function getAvgRatingAttribute() {
-        return "hoi";
-    }
-
 }
 

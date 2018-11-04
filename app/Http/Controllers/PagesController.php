@@ -11,7 +11,9 @@ class PagesController extends Controller
 
     public function index()
     {
-        return view('pages.welcome');
+        $posters = Movie::orderBy('original_title', 'asc')->get();
+
+        return view('pages.welcome')->with('posters', $posters);
     }
 
     public function overview()

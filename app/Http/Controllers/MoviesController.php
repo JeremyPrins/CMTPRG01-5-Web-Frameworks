@@ -15,7 +15,11 @@ class MoviesController extends Controller
     public function show($id)
     {
         $movie = Movie::find($id);
-        return view('movies.show')->with('movie', $movie);
+
+        $rating = review::where('movie_id', $id)->get()->avg(['rating']);
+
+
+        return view('movies.show')->with('movie', $movie)->with('rating', $rating);
     }
 
 

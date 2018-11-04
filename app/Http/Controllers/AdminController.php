@@ -58,7 +58,7 @@ class AdminController extends Controller
 
     public function movieToDatabase(Request $movieObject)
     {
-        $movie = DB::table('movies')->where('original_title', $movieObject['original_title'])->first();
+        $movie = DB::table('movies')->where('id', $movieObject['id'])->first();
 
         if (!$movie) {
 
@@ -103,7 +103,6 @@ class AdminController extends Controller
                 }
 
                 $movie->genres()->attach(collect($searchResult['genres'])->pluck('id')->toArray());
-
             }
             return redirect()->route('admin.add_movie')->with('success', 'Movie added to database!');
 
@@ -114,4 +113,8 @@ class AdminController extends Controller
 
         }
     }
+
+
+
+
 }

@@ -27,9 +27,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/search', 'SearchController@index')->name('pages.search');
+
     Route::post('/search/result', 'SearchController@selectGenres')->name('pages.search/result');
 
+    Route::post('/search/text', 'SearchController@textSearch')->name('pages.search/text');
+
     Route::get('/reviews', 'ReviewsController@index')->name('review');
+
+    Route::post('/reviews/comment/{comment}', 'CommentsController@newComment')->name('reviews.store');
 
     Route::resource('reviews', 'ReviewsController');
 
@@ -39,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Admin Routes
     Route::get('/admin/review_overview', 'AdminController@overview')->name('reviews.overview');
+
+    Route::post('/admin/review_overview/{review}', 'ReviewsController@reviewStatus');
+
     Route::get('/admin/add_movie', 'AdminController@index')->name('admin.add_movie');
     Route::get('/admin/add_movie/search', 'AdminController@search')->name('admin.search');
     Route::post('/admin/add_movie/search', 'AdminController@search')->name('admin.search');

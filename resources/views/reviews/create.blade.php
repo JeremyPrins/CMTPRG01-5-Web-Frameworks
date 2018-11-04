@@ -12,8 +12,8 @@
     </div>
     <div class="col-8">
         <div class="form-group">
-            {{Form::label( 'body', 'Body')}}
-            {{Form::textarea('body', '',['class' => 'form-control', 'placeholder' => 'Review body' ])}}
+            {{Form::label( 'body', 'Body' )}}
+            {{Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Review body' , 'required'] )}}
         </div>
     </div>
 

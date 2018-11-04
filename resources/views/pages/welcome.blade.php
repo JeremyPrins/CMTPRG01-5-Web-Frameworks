@@ -11,4 +11,10 @@
         </div>
     @endif
 
+    @foreach($posters as $poster)
+        <img class="poster-card" src="http://image.tmdb.org/t/p/w154/{{$poster->poster_path}}"
+             alt="{{$poster->original_title}}">
+    @endforeach
+
+
 @endsection

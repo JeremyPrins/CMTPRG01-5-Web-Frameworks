@@ -13,6 +13,6 @@ class Comment extends Model
     }
 
     function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

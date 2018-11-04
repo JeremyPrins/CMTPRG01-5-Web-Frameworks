@@ -10486,3 +10486,27 @@ a.text-dark:focus {
   border-bottom: 1px #dbdbdb solid;
 }
 
+.review-poster img {
+  padding-bottom: 20px;
+}
+
+.poster-card {
+  padding: 10px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.media-body div p {
+  width: 80%;
+}
+
+.background {
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-blend-mode: lighten;
+}
+
+.comment-container .card {
+  margin-top: 20px;
+  width: 100%;
+}
+

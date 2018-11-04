@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->integer('movie_id');
             $table->text('text');
             $table->integer('rating');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
